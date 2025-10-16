@@ -90,6 +90,8 @@
             backdrop-filter: blur(10px);
             max-width: 450px;
             border: 1px solid var(--soft-green);
+            position: relative;
+            z-index: 3;
         }
 
         .login-header {
@@ -231,6 +233,70 @@
             z-index: 1;
         }
 
+        /* Floating Balloons */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff8e8e);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 0;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 20px;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .balloon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            background: radial-gradient(circle at 30% 30%, #6b8ebe, #8aa6d6);
+        }
+
+        .balloon:nth-child(3) {
+            top: 30%;
+            left: 25%;
+            animation-delay: 4s;
+            background: radial-gradient(circle at 30% 30%, #720E9E, #9435b8);
+        }
+
+        .balloon:nth-child(4) {
+            top: 40%;
+            right: 20%;
+            animation-delay: 6s;
+            background: radial-gradient(circle at 30% 30%, #0066CC, #3399ff);
+        }
+
+        .balloon:nth-child(5) {
+            top: 50%;
+            left: 35%;
+            animation-delay: 8s;
+            background: radial-gradient(circle at 30% 30%, #4a6fa5, #6b8ebe);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .login-container {
@@ -279,6 +345,13 @@
     <!-- Decorative floral elements -->
     <div class="floral-top"></div>
     <div class="floral-bottom"></div>
+
+    <!-- Floating Balloons -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
 
     <div class="container">
         <div class="header">
