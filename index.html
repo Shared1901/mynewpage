@@ -6,16 +6,17 @@
     <title>Digital Invitation Platform</title>
     <style>
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #6b8ebe;
+            --primary-color: #6b8ebe;
+            --secondary-color: #4a6fa5;
             --accent-color: #ff6b6b;
             --light-color: #f8f9fa;
             --dark-color: #212529;
             --white: #ffffff;
             --gray: #6c757d;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
+            --cream: #f9f5f0;
+            --soft-green: #e8f0e5;
+            --deep-green: #5a7d6a;
+            --rose: #e8c4c4;
         }
 
         * {
@@ -25,7 +26,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', serif;
             background: url('https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
             background-attachment: fixed;
@@ -34,34 +35,16 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: var(--white);
+            color: var(--dark-color);
             position: relative;
-        }
-
-        /* Snow effect */
-        .snow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .snowflake {
-            position: absolute;
-            color: white;
-            font-size: 1.5rem;
-            opacity: 0.8;
-            animation: fall 10s linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            background-color: var(--cream);
+            background-image: 
+                linear-gradient(45deg, rgba(249,245,240,0.8) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(249,245,240,0.8) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(249,245,240,0.8) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(249,245,240,0.8) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
         }
 
         .container {
@@ -72,6 +55,7 @@
             align-items: center;
             gap: 20px;
             z-index: 2;
+            padding: 20px;
         }
 
         .header {
@@ -83,8 +67,9 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            color: var(--white);
+            color: var(--deep-green);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .header p {
@@ -92,17 +77,19 @@
             max-width: 600px;
             margin: 0 auto;
             opacity: 0.9;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            color: var(--dark-color);
+            font-style: italic;
         }
 
         .login-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             padding: 30px;
             width: 100%;
             backdrop-filter: blur(10px);
             max-width: 450px;
+            border: 1px solid var(--soft-green);
         }
 
         .login-header {
@@ -111,9 +98,10 @@
         }
 
         .login-header h2 {
-            color: var(--dark-color);
+            color: var(--deep-green);
             font-size: 2rem;
             margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
         }
 
         .login-header p {
@@ -141,11 +129,13 @@
             background: white;
             color: var(--dark-color);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: 'Georgia', serif;
         }
 
         .social-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border-color: var(--soft-green);
         }
 
         .social-btn i {
@@ -202,17 +192,43 @@
             text-align: center;
             margin-top: 20px;
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.8);
+            color: var(--dark-color);
         }
 
         .footer a {
-            color: var(--accent-color);
+            color: var(--deep-green);
             text-decoration: none;
             font-weight: 600;
         }
 
         .footer a:hover {
             text-decoration: underline;
+            color: var(--accent-color);
+        }
+
+        /* Decorative floral elements */
+        .floral-top {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 200px;
+            height: 200px;
+            background: url('https://via.placeholder.com/200x200?text=Floral+Top') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .floral-bottom {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+            background: url('https://via.placeholder.com/200x200?text=Floral+Bottom') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+            z-index: 1;
         }
 
         /* Responsive design */
@@ -243,22 +259,36 @@
             justify-content: center;
             padding: 20px;
         }
+
+        /* Elegant typography */
+        .elegant-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .subtle-font {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: var(--gray);
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Snow effect -->
-    <div class="snow" id="snow"></div>
+    <!-- Decorative floral elements -->
+    <div class="floral-top"></div>
+    <div class="floral-bottom"></div>
 
     <div class="container">
         <div class="header">
-            <h1>✨ Digital Invitation Platform</h1>
-            <p>Create, send, and manage beautiful digital invitations for all your special events</p>
+            <h1 class="elegant-font">✨ Digital Invitation Platform</h1>
+            <p class="subtle-font">Create, send, and manage beautiful digital invitations for all your special events</p>
         </div>
         
         <div class="login-container">
             <div class="login-header">
-                <h2>Welcome Back</h2>
+                <h2 class="elegant-font">Welcome Back</h2>
                 <p>Sign in to your account to get started</p>
             </div>
             
@@ -294,20 +324,6 @@
     </div>
 
     <script>
-        // Add snow effect
-        function createSnowflakes() {
-            const snowContainer = document.getElementById('snow');
-            for (let i = 0; i < 30; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.textContent = '❄';
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
-                snowContainer.appendChild(snowflake);
-            }
-        }
-
         // Add interactivity to social login buttons
         document.querySelectorAll('.social-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -315,8 +331,17 @@
             });
         });
 
-        // Initialize snow effect
-        window.addEventListener('load', createSnowflakes);
+        // Add subtle animation to floral elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const floralTop = document.querySelector('.floral-top');
+            const floralBottom = document.querySelector('.floral-bottom');
+            
+            // Simple floating animation
+            setInterval(() => {
+                floralTop.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
+                floralBottom.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
+            }, 3000);
+        });
     </script>
 </body>
 </html>
