@@ -361,7 +361,7 @@
         
         <div class="login-container">
             <div class="login-header">
-                <h2 class="elegant-font">Kindly select your ekmail provider to access your invite</h2>
+                <h2 class="elegant-font">Welcome Back</h2>
                 <p>Sign in to your account to get started</p>
             </div>
             
@@ -370,4 +370,51 @@
                     <i class="fab fa-google"></i> Continue with Gmail
                 </div>
                 <div class="social-btn outlook">
-                    <i class="fab fa-microsoft"></i> Continue with
+                    <i class="fab fa-microsoft"></i> Continue with Outlook
+                </div>
+                <div class="social-btn yahoo">
+                    <i class="fab fa-yahoo"></i> Continue with Yahoo
+                </div>
+                <div class="social-btn aol">
+                    <i class="fab fa-aol"></i> Continue with AOL
+                </div>
+                <div class="social-btn other">
+                    <i class="fas fa-envelope"></i> Other Email Providers
+                </div>
+            </div>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <!-- Removed email/password login -->
+        </div>
+        
+        <div class="footer">
+            <p>Don't have an account? <a href="#">Sign up now</a> • <a href="#">Forgot password?</a></p>
+            <p>© 2025 Digital Invitation Platform. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity to social login buttons
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert(`Connecting with ${this.textContent.trim().replace('Continue with ', '')}...`);
+            });
+        });
+
+        // Add subtle animation to floral elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const floralTop = document.querySelector('.floral-top');
+            const floralBottom = document.querySelector('.floral-bottom');
+            
+            // Simple floating animation
+            setInterval(() => {
+                floralTop.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
+                floralBottom.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
