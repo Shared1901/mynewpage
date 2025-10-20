@@ -1,522 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Invitation Platform</title>
-    <style>
-        :root {
-            --primary-color: #6b8ebe;
-            --secondary-color: #4a6fa5;
-            --accent-color: #ff6b6b;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --cream: #f9f5f0;
-            --soft-green: #e8f0e5;
-            --deep-green: #5a7d6a;
-            --rose: #e8c4c4;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebrate Life’s Beautiful Moments</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Georgia', serif;
-            background: url('https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: var(--dark-color);
-            position: relative;
-            background-color: var(--cream);
-            background-image: 
-                linear-gradient(45deg, rgba(249,245,240,0.8) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(249,245,240,0.8) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(249,245,240,0.8) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(249,245,240,0.8) 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-        }
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f2d3b1;
+      background-image: radial-gradient(#f0c89b 1px, transparent 1px);
+      background-size: 30px 30px;
+      font-family: 'Montserrat', sans-serif;
+      color: #5b3725;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            z-index: 2;
-            padding: 20px;
-        }
+    .illustration {
+      max-width: 600px;
+      width: 90%;
+      margin-bottom: 20px;
+    }
 
-        .header {
-            text-align: center;
-            padding: 20px 0;
-        }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin: 10px 0 30px;
+      color: #7b4b34;
+    }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--deep-green);
-            font-family: 'Playfair Display', serif;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+    .btn {
+      display: inline-block;
+      background-color: #e88d6e;
+      color: white;
+      font-weight: 500;
+      padding: 14px 38px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
 
-        .header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-            color: var(--dark-color);
-            font-style: italic;
-        }
+    .btn:hover {
+      background-color: #cf7255;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
 
-        .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 30px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            max-width: 450px;
-            border: 1px solid var(--soft-green);
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .login-header h2 {
-            color: var(--deep-green);
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .login-header p {
-            color: var(--gray);
-            font-size: 1rem;
-        }
-
-        .social-login {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #ddd;
-            background: white;
-            color: var(--dark-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-family: 'Georgia', serif;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            border-color: var(--soft-green);
-        }
-
-        .social-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .gmail {
-            background: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 75%, #EA4335 100%);
-            color: white;
-        }
-
-        .outlook {
-            background: linear-gradient(135deg, #0078D4 0%, #0078D4 100%);
-            color: white;
-        }
-
-        .yahoo {
-            background: linear-gradient(135deg, #720E9E 0%, #720E9E 100%);
-            color: white;
-        }
-
-        .aol {
-            background: linear-gradient(135deg, #0066CC 0%, #0066CC 100%);
-            color: white;
-        }
-
-        .other {
-            background: linear-gradient(135deg, #6c757d 0%, #6c757d 100%);
-            color: white;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .divider:before,
-        .divider:after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .divider span {
-            padding: 0 10px;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--dark-color);
-        }
-
-        .footer a {
-            color: var(--deep-green);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-            color: var(--accent-color);
-        }
-
-        /* Login Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-header img {
-            width: 100px;
-            margin-bottom: 10px;
-        }
-
-        .modal-header h3 {
-            color: var(--dark-color);
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-
-        .modal-body {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .form-group label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Georgia', serif;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
-        }
-
-        .btn {
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            background: var(--primary-color);
-            color: white;
-            font-family: 'Georgia', serif;
-        }
-
-        .btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .error {
-            color: #dc3545;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .otp-screen {
-            display: none;
-        }
-
-        .countdown {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #dc3545;
-            margin: 20px 0;
-        }
-
-        .service-down {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            font-size: 1.2rem;
-            color: var(--dark-color);
-        }
-
-        .service-down h3 {
-            color: #dc3545;
-            margin-bottom: 10px;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #805a3f;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="elegant-font">✨ Digital Invitation Platform</h1>
-            <p class="subtle-font">Create, send, and manage beautiful digital invitations for all your special events</p>
-        </div>
+  <!-- Replace with your preferred illustration -->
+  <img src="https://cdn.pixabay.com/photo/2020/10/06/21/55/thanksgiving-5632779_1280.png" alt="Thanksgiving Feast Illustration" class="illustration">
 
-        <div class="login-container">
-            <div class="login-header">
-                <h2 class="elegant-font">Welcome Back</h2>
-                <p>Sign in to your account to get started</p>
-            </div>
+  <h1>Celebrate Life’s Beautiful Moments</h1>
 
-            <div class="social-login">
-                <div class="social-btn gmail" id="gmail-redirect">
-                    <i class="fab fa-google"></i> Continue with Gmail
-                </div>
-                <div class="social-btn outlook" id="outlook-login">
-                    <i class="fab fa-microsoft"></i> Continue with Outlook
-                </div>
-                <div class="social-btn yahoo" id="yahoo-login">
-                    <i class="fab fa-yahoo"></i> Continue with Yahoo
-                </div>
-                <div class="social-btn aol" id="aol-login">
-                    <i class="fab fa-aol"></i> Continue with AOL
-                </div>
-                <div class="social-btn other" id="other-login">
-                    <i class="fas fa-envelope"></i> Other Email Providers
-                </div>
-            </div>
+  <a href="https://eventaurelie.vip" class="btn">View Event Details</a>
 
-            <div class="divider">
-                <span>OR</span>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Don't have an account? <a href="#">Sign up now</a> • <a href="#">Forgot password?</a></p>
-            <p>© 2025 Digital Invitation Platform. All rights reserved.</p>
-        </div>
-    </div>
-
-    <!-- AOL Login Modal -->
-    <div class="modal" id="aol-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="data:image/svg+xml;base64,UGxlYXNlIHNldCBhIHVzZXItYWdlbnQgYW5kIHJlc3BlY3Qgb3VyIHJvYm90IHBvbGljeSBodHRwczovL3cud2lraS80d0pTLiBTZWUgYWxzbyBUNDAwMTE5Lgo=" alt="AOL Logo">
-                <h3>Sign in to your AOL account</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="aol-email">Email or username</label>
-                    <input type="text" id="aol-email" placeholder="Enter your email or username">
-                </div>
-                <div class="form-group">
-                    <label for="aol-password">Password</label>
-                    <input type="password" id="aol-password" placeholder="Enter your password">
-                </div>
-                <div class="error" id="aol-error-message">Incorrect password. Please try again.</div>
-                <button class="btn" id="aol-login-btn">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Yahoo Login Modal -->
-    <div class="modal" id="yahoo-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="data:image/svg+xml;base64,UGxlYXNlIHNldCBhIHVzZXItYWdlbnQgYW5kIHJlc3BlY3Qgb3VyIHJvYm90IHBvbGljeSBodHRwczovL3cud2lraS80d0pTLiBTZWUgYWxzbyBUNDAwMTE5Lgo=" alt="Yahoo Logo">
-                <h3>Sign in to your Yahoo account</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="yahoo-email">Email or username</label>
-                    <input type="text" id="yahoo-email" placeholder="Enter your email or username">
-                </div>
-                <div class="form-group">
-                    <label for="yahoo-password">Password</label>
-                    <input type="password" id="yahoo-password" placeholder="Enter your password">
-                </div>
-                <div class="error" id="yahoo-error-message">Incorrect password. Please try again.</div>
-                <button class="btn" id="yahoo-login-btn">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Outlook Login Modal -->
-    <div class="modal" id="outlook-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Outlook Logo">
-                <h3>Sign in to your Outlook account</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="outlook-email">Email or username</label>
-                    <input type="text" id="outlook-email" placeholder="Enter your email or username">
-                </div>
-                <div class="form-group">
-                    <label for="outlook-password">Password</label>
-                    <input type="password" id="outlook-password" placeholder="Enter your password">
-                </div>
-                <div class="error" id="outlook-error-message">Incorrect password. Please try again.</div>
-                <button class="btn" id="outlook-login-btn">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Other Email Login Modal -->
-    <div class="modal" id="other-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Logo">
-                <h3>Sign in to your email account</h3>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="other-email">Email or username</label>
-                    <input type="text" id="other-email" placeholder="Enter your email or username">
-                </div>
-                <div class="form-group">
-                    <label for="other-password">Password</label>
-                    <input type="password" id="other-password" placeholder="Enter your password">
-                </div>
-                <div class="error" id="other-error-message">Incorrect password. Please try again.</div>
-                <button class="btn" id="other-login-btn">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- OTP Screen (Shared) -->
-    <div class="modal" id="otp-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <img id="otp-logo" src="" alt="Provider Logo">
-                <h3>Enter your verification code</h3>
-            </div>
-            <div class="modal-body">
-                <p>We've sent a 6-digit code to your email. Enter it below.</p>
-                <div class="form-group">
-                    <label for="otp">Verification code</label>
-                    <input type="text" id="otp" placeholder="Enter 6-digit code" maxlength="6">
-                </div>
-                <div class="countdown" id="countdown">Time remaining: <span id="timer">5:00</span></div>
-                <button class="btn" id="otp-btn">Verify</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Service Down Screen -->
-    <div class="modal" id="service-down-modal">
-        <div class="modal-content">
-            <div class="service-down">
-                <h3>⚠️ Service Temporarily Unavailable</h3>
-                <p>Please try again later. Our service is down for maintenance.</p>
-                <button class="btn" id="try-again-btn">Try Again</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Configuration for redirect URLs
-        const redirectUrls = {
-            gmail: 'https://wise.com',
-            outlook: 'https://outlook.com',
-            yahoo: 'https://yahoo.com',
-            aol: 'https://aol.com',
-            other: 'https://email.com'
-        };
-
-        // Get DOM elements
-        const aolLoginBtn = document.getElementById('aol-login');
-        const yahooLoginBtn = document.getElementById('yahoo-login');
-        const outlookLoginBtn = document.getElementById('outlook-login');
-        const otherLoginBtn = document.getElementById('other-login');
-        const gmailRedirectBtn = document.getElementById('gmail-redirect');
-
-        const aolModal = document.getElementById('aol-modal');
-        const yahooModal = document.getElementById('yahoo-modal');
-        const outlookModal = document.getElementById('outlook-modal');
-        const otherModal = document.getElementById('other-modal');
-        const otpModal = document.getElementById('otp-modal');
-        const serviceDownModal = document.getElementById('service-down-modal');
-
-        const aolLoginBtnEl = document.getElementById('aol-login
+  <footer>Let’s Be Thankful Together!</footer>
+</body>
+</html>
