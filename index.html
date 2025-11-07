@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Celebrate Life’s Beautiful Moments</title>
 
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* Reset default styles */
     * {
       margin: 0;
       padding: 0;
@@ -23,12 +25,11 @@
       text-align: center;
       font-family: "Georgia", serif;
       color: white;
-      background: url("background.jpg") no-repeat center center/cover;
+      background: url("Background.jpg") no-repeat center center/cover;
       position: relative;
       overflow: hidden;
     }
 
-    /* Subtle dark overlay for readability */
     body::before {
       content: "";
       position: absolute;
@@ -99,7 +100,40 @@
       min-width: 60px;
     }
 
-    /* Responsive Design */
+    /* Event Info Section */
+    .event-info {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    .info-box {
+      text-align: center;
+    }
+
+    .info-box i {
+      font-size: 2rem;
+      color: #d6a43b;
+      margin-bottom: 10px;
+    }
+
+    .info-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .info-detail {
+      font-size: 0.95rem;
+      color: #f5e7c5;
+      margin-top: 4px;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       h1 {
         font-size: 2.1rem;
@@ -116,6 +150,10 @@
 
       #countdown {
         font-size: 0.95rem;
+      }
+
+      .event-info {
+        gap: 35px;
       }
     }
 
@@ -136,6 +174,14 @@
       #countdown {
         font-size: 0.9rem;
       }
+
+      .info-title {
+        font-size: 1rem;
+      }
+
+      .info-detail {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -147,9 +193,30 @@
   <!-- Countdown Timer -->
   <div id="countdown"></div>
 
+  <!-- Event Info Section -->
+  <div class="event-info">
+    <div class="info-box">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div class="info-title">When</div>
+      <div class="info-detail">December 14, 2025</div>
+    </div>
+
+    <div class="info-box">
+      <i class="fa-solid fa-location-dot"></i>
+      <div class="info-title">Where</div>
+      <div class="info-detail">TBD</div>
+    </div>
+
+    <div class="info-box">
+      <i class="fa-solid fa-clock"></i>
+      <div class="info-title">Time</div>
+      <div class="info-detail">00:00 EST</div>
+    </div>
+  </div>
+
   <script>
     // 🎯 Set your event date here:
-    const eventDate = new Date("2025-12-14T00:00:00").getTime();
+    const eventDate = new Date("2025-12-25T00:00:00").getTime();
 
     const countdown = document.getElementById("countdown");
 
