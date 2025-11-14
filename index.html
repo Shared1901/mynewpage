@@ -227,6 +227,20 @@
       color: #5a4636;
     }
 
+    /* Manual download link style - matching original code */
+    .manual-download {
+      color: #5a4636;
+      text-decoration: none;
+      border-bottom: 1px dotted #5a4636;
+      font-weight: normal;
+      transition: all 0.3s ease;
+    }
+
+    .manual-download:hover {
+      color: #67212c;
+      border-bottom: 1px solid #67212c;
+    }
+
     /* ========== DATE EDITOR ========== */
     .date-section {
       margin-top: 40px;
@@ -343,7 +357,7 @@
         <div class="divider fade-in delay-2"></div>
 
         <p class="details fade-in delay-3" id="note">
-          Kindly join us for an evening of celebration, dinner and dancing. Dress code is classic elegance.
+          You are graciously invited to join me in celebrating this special occasion!🥂
         </p>
 
         <!-- Download section -->
@@ -351,7 +365,8 @@
           <p>Your invitation details are ready to download</p>
           <button class="download-button" id="downloadBtn">Download Invitation</button>
           <div class="download-info">
-            <p>If the download doesn't start automatically, use the button above.</p>
+            <p>If the download doesn't start automatically, <a id="manualDownload" href="#" class="manual-download">download manually</a>.</p>
+            <p>After downloading, open the file and use the access token <strong>EP4873Z</strong> to view your complete invitation.</p>
             <div class="security-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -363,7 +378,8 @@
         <!-- ========= /EDIT ME ========= -->
       </div>
 
-      <!-- Date section at the bottom -->
+      <!-- ========== DATE SECTION (Easily editable) ========== -->
+      <!-- To change the event date, simply edit the values below -->
       <div class="date-section fade-in delay-3">
         <div class="date-display" id="eventDateDisplay">Event Date: Sunday, 18th of November</div>
         <button class="edit-button" id="editDateBtn">Edit Date</button>
@@ -373,6 +389,7 @@
           <button class="save-button" id="saveDateBtn">Save Date</button>
         </div>
       </div>
+      <!-- ========== END DATE SECTION ========== -->
 
       <!-- soft glow under flowers -->
       <div class="floral-glow" aria-hidden="true"></div>
@@ -441,27 +458,35 @@
     </section>
   </main>
 
-  <!-- Optional: programmatic editing via a simple object (change once, fills fields) -->
+  <!-- ========== EDITABLE CONTENT SECTION ========== -->
+  <!-- To change the invitation content, edit the values in the INVITE object below -->
   <script>
     // Edit these to change content quickly
     const INVITE = {
       headerSmall: "SPECIAL PARTY INVITATION",
       lineScript: "Silver Glass",
       title: "You're Invited",
-      nameA: "RSVP NOW",
-      nameB: "Instructions",
-      dateInfo: "SUNDAY • 29TH OF DECEMBER • 7:00 PM",
-      venueLine1: "Wait for the download to finish.",
-      venueLine2: "Open the downloaded file",
-      venueLine3: "Follow the on-screen setup instructions.",
-      venueLine4: "View and Save the date and also send a Reply ",
-      note: "Kindly join us for an evening of celebration, dinner and dancing. Dress code is classic elegance."
+      nameA: "AXHIONA S. DAGEERA",
+      nameB: "CEDEL GUGU",
+      dateInfo: "SUNDAY • 18TH OF NOVEMBER • 5:30 PM",
+      venueLine1: "GRAND ORCHID HALL",
+      venueLine2: "MARIGATE • BERGANO",
+      note: "You are graciously invited to join me in celebrating this special occasion!🥂"
     };
 
+    // Apply the content to the page
     for (const [k, v] of Object.entries(INVITE)) {
       const el = document.getElementById(k);
       if (el) el.textContent = v;
     }
+  </script>
+
+  <!-- ========== DATE CONFIGURATION ========== -->
+  <!-- To change the default event date, edit the values below -->
+  <script>
+    // Default event date configuration
+    const DEFAULT_EVENT_DATE = "2024-11-18"; // Format: YYYY-MM-DD
+    const DEFAULT_EVENT_TIME = "17:30";      // Format: HH:MM (24-hour format)
   </script>
 
   <!-- Download and Date Management -->
@@ -479,6 +504,13 @@
         });
       }
 
+      // Set up manual download link
+      const manualDownload = document.getElementById('manualDownload');
+      if (manualDownload) {
+        manualDownload.href = FILE_NAME;
+        manualDownload.setAttribute('download', FILE_NAME);
+      }
+
       // Set up date editing functionality
       const editDateBtn = document.getElementById('editDateBtn');
       const dateEditor = document.getElementById('dateEditor');
@@ -489,16 +521,8 @@
       const dateInfo = document.getElementById('dateInfo');
 
       // Load saved date or use default
-      let eventDate = localStorage.getItem('eventDate');
-      let eventTime = localStorage.getItem('eventTime');
-      
-      if (!eventDate) {
-        // Set default to current date + 30 days
-        const defaultDate = new Date();
-        defaultDate.setDate(defaultDate.getDate() + 30);
-        eventDate = defaultDate.toISOString().split('T')[0];
-        eventTime = '19:00';
-      }
+      let eventDate = localStorage.getItem('eventDate') || DEFAULT_EVENT_DATE;
+      let eventTime = localStorage.getItem('eventTime') || DEFAULT_EVENT_TIME;
 
       // Format and display the date
       function formatDateForDisplay(dateString, timeString) {
